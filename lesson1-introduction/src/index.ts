@@ -70,3 +70,31 @@ console.log(res2.length);
 //*****************************************//
 //*****************************************//
 // CLASSES
+
+class Vehicule {
+  wheel = 4;
+}
+
+class Voiture extends Vehicule {
+  speed: number;
+
+  move() {
+    console.log("car move");
+  }
+
+  stop() {
+    console.log("car stop");
+  }
+
+  constructor() {
+    super();
+    this.speed = 55;
+  }
+}
+
+let car: Voiture;
+
+car = new Voiture();
+
+console.log(car.speed);
+console.log(car.wheel);
