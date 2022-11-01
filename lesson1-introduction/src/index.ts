@@ -27,3 +27,11 @@ function add(nbr1: number, nbr2: number): number {
 }
 
 console.log(add(1, 2));
+
+// Typer une fonction avant sa déclaration
+let add1: (nbr1: number, nbr2: number) => number;
+let add2: Function;
+
+add1 = (a: number, b: number) => {
+  return a + b;
+};
