@@ -71,30 +71,108 @@ console.log(res2.length);
 //*****************************************//
 // CLASSES
 
-class Vehicule {
+abstract class Engine {
+  constructor(protected type: string) {}
+
+  abstract stopEngine(): number;
+}
+
+// const engine: Engine = new Engine();
+
+class Vehicule extends Engine {
   wheel = 4;
+  protected brand: string;
+
+  constructor(brand: string) {
+    super("v8");
+    this.brand = brand;
+  }
+
+  stopEngine() {
+    console.log("Stop engine");
+    return 0;
+  }
 }
 
 class Voiture extends Vehicule {
-  speed: number;
+  static className = "Vehicule";
+  private maxSpeed: number = 220;
+  readonly airbag: boolean;
 
-  move() {
+  constructor(public speed: number) {
+    super("Porsche");
+    this.airbag = true;
+  }
+
+  static startCar() {
+    console.log("Car can start");
+  }
+
+  move(): void {
     console.log("car move");
   }
 
-  stop() {
+  faster(newSpeed: number): void {
+    if (newSpeed < this.maxSpeed) {
+      this.speed = newSpeed;
+    }
+  }
+
+  stop(): void {
     console.log("car stop");
   }
 
-  constructor() {
-    super();
-    this.speed = 55;
+  changeBrand(newBrand: string): void {
+    this.brand = newBrand;
   }
 }
 
 let car: Voiture;
 
-car = new Voiture();
+car = new Voiture(80);
 
 console.log(car.speed);
 console.log(car.wheel);
+console.log(car);
+console.log(Voiture.className);
+console.log(Voiture.startCar());
+
+//*****************************************//
+//*****************************************//
+// INTERFACE
+
+console.log("-------------------------INTERFACE-------------------------");
+
+interface User {
+  readonly username: string;
+  age: number;
+  isDrinking?: boolean;
+  isHealthy?: boolean;
+  isSmoking?: boolean;
+}
+
+const ids: readonly string[] = ["1", "2", "3"];
+// ids.push("4");
+
+const user: User = {
+  username: "Jean",
+  age: 30,
+  isDrinking: true,
+  isSmoking: true,
+  isHealthy: false,
+};
+
+const newUser: User = {
+  username: "Paul",
+  age: 50,
+};
+
+function greet(user: User): void {
+  console.log(`Hello ${user.username}`);
+}
+
+function death(user: User) {}
+
+function goodShape(user: User) {}
+
+greet(user);
