@@ -2,6 +2,8 @@
 //*****************************************//
 // TYPES GENERIQUES
 
+import * as Readline from "readline";
+
 const arr: Array<string> = ["pommes", "fraises", "tomates"];
 
 const fruit = arr[0];
@@ -10,13 +12,13 @@ interface User {
   username: string;
 }
 
-const promise: Promise<User> = new Promise((resolve, reject) => {
-  resolve({ username: "Jean" });
-});
+// const promise: Promise<User> = new Promise((resolve, reject) => {
+//   resolve({ username: "Jean" });
+// });
 
-promise.then((res) => {
-  res.username;
-});
+// promise.then((res) => {
+//   res.username;
+// });
 
 //*****************************************//
 //*****************************************//
@@ -110,3 +112,72 @@ function displayProp<T, U extends keyof T>(object: T, prop: U) {
 }
 
 displayProp({ price: 50 }, "price");
+
+//*****************************************//
+//*****************************************//
+// COLLECTIONS ET TYPES GENERIQUES
+
+// interface User {
+//   username: string;
+// }
+
+// const newUser: Readonly<User> = {
+//   username: "Jean",
+// };
+
+// newUser.username = "Louis";
+
+// interface User {
+//   username: string;
+//   age: number;
+//   address: {
+//     city: string;
+//   };
+// }
+//
+const newUser: User = {
+  username: "Jean",
+  age: 12,
+  address: {
+    city: "Ville-la-Grand",
+  },
+};
+
+function editUser(user: User, editedUser: Partial<User>) {
+  return { ...user, ...editedUser };
+}
+
+editUser(newUser, { age: 20 });
+
+interface Page {
+  title: string;
+}
+
+// interface Pages {
+//   [page: string]: Page;
+// }
+
+type PageType = "home" | "about" | "contact";
+
+const pages: Record<PageType, Page> = {
+  home: {
+    title: "homepage",
+  },
+  about: {
+    title: "about",
+  },
+  contact: {
+    title: "about",
+  },
+};
+
+interface User {
+  username: string;
+  age: number;
+  address: {
+    city: string;
+  };
+}
+
+type LightUser = Pick<User, "username" | "age">;
+type LightUser2 = Omit<User, "address">;

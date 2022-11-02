@@ -1,146 +1,121 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var foo = "une string";
-var bar = 5;
-var boolean = true;
-var arr = [1, 2, 3];
-var arr2 = [1, 2, 3];
-var tuple = [1, 2];
-var Role;
-(function (Role) {
-    Role[Role["ADMIN"] = 0] = "ADMIN";
-    Role[Role["READ_ONLY"] = 1] = "READ_ONLY";
-    Role[Role["READ_WRITE"] = 2] = "READ_WRITE";
-})(Role || (Role = {}));
-console.log(Role.ADMIN);
-var username;
-username = "Jean";
-var nbr = username.length;
+"use strict";
 //*****************************************//
 //*****************************************//
-// FUNCTIONS
-function add(nbr1, nbr2) {
-    return nbr1 + nbr2;
-}
-console.log(add(1, 2));
-// Typer une fonction avant sa déclaration
-var add1;
-var add2;
-add1 = function (a, b) {
-    return a + b;
-};
-console.log(add1(5, 2));
-console.log("********************************");
-var add3 = function () {
-    var numbers = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        numbers[_i] = arguments[_i];
-    }
-    return numbers.reduce(function (acc, i) {
-        console.log(i);
-        acc += i;
-        return acc;
-    }, 0);
-};
-console.log("***********TOTAL**************");
-console.log(add3(1, 2, 3, 4));
-function add4(a, b) {
-    return a + b;
-}
-function add5(a, b) {
-    return a + b;
-}
-var res1 = add5(1, 2);
-var res2 = add5("hello ", "world");
-res2.split("");
-console.log(res2.length);
-//*****************************************//
-//*****************************************//
-// CLASSES
-var Engine = /** @class */ (function () {
-    function Engine(type) {
-        this.type = type;
-    }
-    return Engine;
-}());
-// const engine: Engine = new Engine();
-var Vehicule = /** @class */ (function (_super) {
-    __extends(Vehicule, _super);
-    function Vehicule(brand) {
-        var _this = _super.call(this, "v8") || this;
-        _this.wheel = 4;
-        _this.brand = brand;
-        return _this;
-    }
-    Vehicule.prototype.stopEngine = function () {
-        console.log("Stop engine");
-        return 0;
-    };
-    return Vehicule;
-}(Engine));
-var Voiture = /** @class */ (function (_super) {
-    __extends(Voiture, _super);
-    function Voiture(speed) {
-        var _this = _super.call(this, "Porsche") || this;
-        _this.speed = speed;
-        _this.maxSpeed = 220;
-        _this.airbag = true;
-        return _this;
-    }
-    Voiture.startCar = function () {
-        console.log("Car can start");
-    };
-    Voiture.prototype.move = function () {
-        console.log("car move");
-    };
-    Voiture.prototype.faster = function (newSpeed) {
-        if (newSpeed < this.maxSpeed) {
-            this.speed = newSpeed;
+// TYPES GENERIQUES
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
         }
+        return t;
     };
-    Voiture.prototype.stop = function () {
-        console.log("car stop");
-    };
-    Voiture.prototype.changeBrand = function (newBrand) {
-        this.brand = newBrand;
-    };
-    Voiture.className = "Vehicule";
-    return Voiture;
-}(Vehicule));
-var car;
-car = new Voiture(80);
-console.log(car.speed);
-console.log(car.wheel);
-console.log(car);
-console.log(Voiture.className);
-console.log(Voiture.startCar());
-//*****************************************//
-//*****************************************//
-// INTERFACE
-console.log("-------------------------INTERFACE-------------------------");
-var user = {
-    username: "Jean",
-    age: 30,
-    isDrinking: true,
-    isSmoking: true,
-    isHealthy: false
+    return __assign.apply(this, arguments);
 };
-function greet(user) {
-    console.log("Hello ".concat(user.username));
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var arr = ["pommes", "fraises", "tomates"];
+var fruit = arr[0];
+var newCar = { speed: 50 };
+var newFruit = {
+    name: "banana",
+    price: 1,
+};
+var addItemToCollection = function (item, collection) {
+    return __spreadArray(__spreadArray([], collection, true), [item], false);
+};
+var myFruits = addItemToCollection(newFruit, []);
+var myCars = addItemToCollection(newCar, []);
+// console.log(myFruits[0].price);
+// console.log(myCars[0].speed);
+//*****************************************//
+//*****************************************//
+// CLASSE ET TYPES GENERIQUES
+var Stack = /** @class */ (function () {
+    function Stack() {
+        this.items = [];
+    }
+    Stack.prototype.push = function (item) {
+        this.items.push(item);
+    };
+    Stack.prototype.pop = function () {
+        return this.items.pop();
+    };
+    Stack.prototype.display = function () {
+        console.log(this.items);
+    };
+    return Stack;
+}());
+var newStackNumber = new Stack();
+newStackNumber.push(1);
+newStackNumber.display();
+newStackNumber.push(2);
+newStackNumber.display();
+var myNumber = newStackNumber.pop();
+newStackNumber.display();
+console.log(myNumber);
+var newStackString = new Stack();
+newStackString.push("hello");
+newStackString.display();
+newStackString.push("world");
+newStackString.display();
+var myString = newStackString.pop();
+newStackString.display();
+console.log(myString);
+function displayName(object) {
+    console.log(object.name);
 }
-function death(user) { }
-function goodShape(user) { }
-greet(user);
+function displayProp(object, prop) {
+    console.log(object[prop]);
+}
+displayProp({ price: 50 }, "price");
+//*****************************************//
+//*****************************************//
+// COLLECTIONS ET TYPES GENERIQUES
+// interface User {
+//   username: string;
+// }
+// const newUser: Readonly<User> = {
+//   username: "Jean",
+// };
+// newUser.username = "Louis";
+// interface User {
+//   username: string;
+//   age: number;
+//   address: {
+//     city: string;
+//   };
+// }
+//
+var newUser = {
+    username: "Jean",
+    age: 12,
+    address: {
+        city: "Ville-la-Grand",
+    },
+};
+function editUser(user, editedUser) {
+    return __assign(__assign({}, user), editedUser);
+}
+editUser(newUser, { age: 20 });
+var pages = {
+    home: {
+        title: "homepage",
+    },
+    about: {
+        title: "about",
+    },
+    contact: {
+        title: "about",
+    },
+};
+//# sourceMappingURL=index.js.map

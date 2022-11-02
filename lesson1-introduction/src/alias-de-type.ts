@@ -4,21 +4,21 @@
 
 type UserStatutType = "online" | "offline" | "busy";
 
-let userStatus: UserStatutType = "online";
+let userStatus1: UserStatutType = "online";
 
 function getUserStatus(user): UserStatutType {
   return user.status;
 }
 
-type ObjectId = string;
+type ObjectId1 = string;
 
-type User = {
+type User1 = {
   username: string;
   age: number;
   id: ObjectId;
 };
 
-const newUser: User = {
+const newUser1: User = {
   username: "Felipe",
   age: 39,
   id: "123",

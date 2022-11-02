@@ -8,6 +8,7 @@ interface Vehicule {
 }
 
 interface Engine {
+  // @ts-ignore
   type: string;
 }
 
