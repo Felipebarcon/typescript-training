@@ -92,3 +92,21 @@ newStackString.display();
 const myString = newStackString.pop();
 newStackString.display();
 console.log(myString);
+
+//*****************************************//
+//*****************************************//
+// CONTRAINDRE LES TYPES GENERIQUES
+
+interface Name {
+  name: string;
+}
+
+function displayName<T extends Name>(object: T) {
+  console.log(object.name);
+}
+
+function displayProp<T, U extends keyof T>(object: T, prop: U) {
+  console.log(object[prop]);
+}
+
+displayProp({ price: 50 }, "price");
