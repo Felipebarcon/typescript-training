@@ -78,7 +78,7 @@ function vehiculeFactory(type: 1 | 2): Car | Truck {
   }
 }
 
-const foo = vehiculeFactory(2);
+const foo2 = vehiculeFactory(2);
 
 if (foo.type === "truck") {
   foo.load(123);

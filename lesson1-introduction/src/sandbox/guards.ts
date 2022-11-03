@@ -30,7 +30,7 @@ function move2(a: Bird | Whale) {
   }
 }
 
-function foo(a: string | number) {
+function foo3(a: string | number) {
   if (typeof a === "number") {
     a.toFixed();
   }
@@ -47,7 +47,7 @@ class B {
 const a = new A();
 const b = new B();
 
-function bar(a: A | B) {
+function bar2(a: A | B) {
   if (a instanceof A) {
     a.getA();
   } else {
