@@ -4,6 +4,10 @@
     "outDir": "./dist",
     "module": "ESnext",
     "target": "ES6",
-    "baseUrl": "."
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "jquery": ["node_modules/jquery/dist/jquery"]
+    }
   }
 }
